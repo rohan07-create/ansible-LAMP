@@ -1,0 +1,25 @@
+---
+# tasks file for /root/ansible_aws/roles/deploywebapp
+
+   - name: Copy index source code
+     copy:
+          src: "{{ indexfile }}"
+          dest: /var/www/html/
+     when: ansible_host == "192.168.42.127"
+   - name: Copy backend source Code
+     copy:
+              src: "{{ file1 }}"
+              dest: /var/www/html/
+     when: ansible_host == "192.168.42.127"
+   - name: Copy backend source Code 2
+     copy:
+              src: "{{ file2 }}"
+              dest: /var/www/html/ 
+     when: ansible_host == "192.168.42.127"
+
+   - name: Start services
+     service: 
+       name: httpd
+       status: started
+     when: ansible_host == "192.168.42.127"
+

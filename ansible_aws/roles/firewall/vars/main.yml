@@ -1,0 +1,4 @@
+---
+# vars file for /root/ansible_aws/roles/web
+http_service: http
+mysql_service: mysql

@@ -1,0 +1,13 @@
+---
+# tasks file for /root/ansible_aws/roles/configserver
+  - name: Install all required dependencies
+    yum: name={{ item }} state=installed force=yes
+    with_items:
+        - httpd
+        - mariadb-connector-odbc
+        - python3-PyMySQL
+        - php
+        - php-mysqlnd
+  - name: Install all required dependencies
+    yum: name=mariadb-server state=installed 
+    when: ansible_host == "192.168.42.128"

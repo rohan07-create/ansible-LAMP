@@ -1,0 +1,12 @@
+---
+# tasks file for /root/ansible_aws/roles/web
+- name: firewall config
+  firewalld:
+      service: "{{ http_service }}"
+      permanent: true
+      state: enabled
+- name: firewall config
+  firewalld:
+      service: "{{ mysql_service }}"
+      permanent: true
+      state: enabled

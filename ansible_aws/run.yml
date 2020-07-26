@@ -1,0 +1,7 @@
+- name: LAMP Deploy
+  hosts: all
+  roles:
+     - mysqld
+     - configserver
+     - deploywebapp
+     - firewall

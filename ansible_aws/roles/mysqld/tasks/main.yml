@@ -1,0 +1,27 @@
+---
+# tasks file for /root/ansible_aws/roles/mysqld
+- name: service start mariadb
+  service: name=mariadb state=started
+  when: ansible_host == "192.168.42.128"
+
+- name: MySQL User
+  mysql_user:
+     name: root
+     host: target2
+     password: mysql
+     login_user: root
+     check_implict_admin: yes
+     priv: "*.*:ALL,GRANT"
+  when: ansible_host == "192.168.42.128"
+
+- name: create database
+  mysql_db: name=inventory state=present login_user=root login_password=mysql
+  when: ansible_host == "192.168.42.128"
+
+- name: copy sql file
+  copy: src=contact.sql dest=/tmp/contact.sql  
+  when: ansible_host == "192.168.42.128"
+
+- name: Create table called with server
+  shell: mysql -u root -pmysql inventory < /tmp/contact.sql
+  when: ansible_host == "192.168.42.128"

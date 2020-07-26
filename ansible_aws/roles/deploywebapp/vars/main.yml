@@ -1,0 +1,5 @@
+---
+# vars file for /root/ansible_aws/roles/deploywebapp
+indexfile: index.html
+file1: contact.php
+file2: fetchcontactdata.php
